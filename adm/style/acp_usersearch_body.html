@@ -1,0 +1,31 @@
+{% include 'overall_header.html' %}
+
+<h1>{{ lang('ACP_USERSEARCH_TITLE') }}</h1>
+
+{% if S_ERROR %}
+	<div class="errorbox">
+		<h3>{{ lang('WARNING') }}</h3>
+		<p>{{ ERROR_MSG }}</p>
+	</div>
+{% endif %}
+
+<form id="ssyt_usersearch_acp" name="ssyt_usersearch_acp" method="post" action="{{ U_ACTION }}">
+
+	<fieldset>
+		<legend>{{ lang('SETTINGS') }}</legend>
+		<dl>
+			<dt><label for="ssyt_usersearch_enable">{{ lang('ACP_USERSEARCH_GOODBYE') ~ lang('COLON') }}</label></dt>
+			<dd><label><input type="radio" class="radio" name="ssyt_usersearch_enable" value="1"{% if SSYT_USERSEARCH_ENABLE %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="ssyt_usersearch_enable" value="0"{% if not SSYT_USERSEARCH_ENABLE %} checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
+		</dl>
+	</fieldset>
+
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />&nbsp;
+		<input class="button2" type="submit" id="cancel" name="cancel" value="{{ lang('CANCEL') }}" />
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+
+</form>
+
+{% include 'overall_footer.html' %}

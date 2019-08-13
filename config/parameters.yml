@@ -1,0 +1,2 @@
+parameters:
+    ssyt.usersearch.tables.usersearch_table: '%core.table_prefix%ssyt_usersearch_table'

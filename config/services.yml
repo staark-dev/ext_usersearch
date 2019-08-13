@@ -1,0 +1,40 @@
+imports:
+    - { resource: parameters.yml }
+
+services:
+    ssyt.usersearch.controller.main:
+        class: ssyt\usersearch\controller\main_controller
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@language'
+
+    ssyt.usersearch.controller.acp:
+        class: ssyt\usersearch\controller\acp_controller
+        arguments:
+            - '@config'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+
+    ssyt.usersearch.service:
+        class: ssyt\usersearch\service
+        arguments:
+            - '@user'
+            - '%ssyt.usersearch.tables.usersearch_table%'
+
+    ssyt.usersearch.listener:
+        class: ssyt\usersearch\event\usersearch
+        arguments:
+            - '@config'
+            - '@request'
+            - '@language'
+            - '@controller.helper'
+            - '@template'
+            - '%core.php_ext%'
+            - '@dbal.conn'
+        tags:
+            - { name: event.listener }
